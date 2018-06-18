@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+
+    <meta charset="utf-8">
+    <title>hexdecimal clock</title>
+  </head>
+  <style>
+    body {
+      font-family: 'Arial';
+      margin-top: 200px;
+      text-align: center;
+      color: black;
+    }
+
+    #clock{
+      font-weight: 300;
+      font-size: 100px;
+    }
+
+    #hex-color{
+      color:#22019;
+    }
+  </style>
+  <body>
+    <h1 id="clock">00 : 00 . 0 </h1>
+    <p id="hex-color">#000000</p>
+
+
+
+
+    <script>
+
+      var clock = document.getElementById('clock');
+      var hexColor = document.getElementById('hex-color');
+
+      //#000000
+      function hexClock(){
+        var time = new Date();
+        var hours = (time.getHours() % 12).toString();
+        var minutes = time.getMinutes().toString();
+        var seconds = time.getSeconds().toString();
+
+        if (hours < 2){
+          hours = '0' + hours;
+        }
+
+        if(minutes.length < 2){
+          minutes = '0' + minutes;
+        }
+
+        if(seconds.length < 2){
+          seconds = '0' + seconds;
+        }
+        var clockStr = hours + ' : ' + minutes + ' : ' + seconds;
+        var hexColorStr = hours + minutes + seconds;
+
+        if(hexColorStr.length < 6){
+          hexColorStr = "#" + "0" + hexColorStr;
+        }else if(hexColorStr.length < 5){
+          hexColorStr = "#" + "0" + "0" + hexColorStr;
+        }else if(hexColorStr.length < 4){
+          hexColorStr = "#" + "0" + "0" + "0" + hexColorStr;
+        }else if(hexColorStr.length < 3){
+          hexColorStr = "#" + "0" + "0" + "0" + "0" + hexColorStr;
+        }else if(hexColorStr.length < 2){
+          hexColorStr = "#" + "0" + "0" + "0" + "0" + "0" + hexColorStr;
+        }else if(hexColorStr.length < 1){
+          hexColorStr = "#" + "0" + "0" + "0" + "0" + "0" + "0" + hexColorStr;
+        }else{
+          hexColorStr = "#" + hexColorStr;
+        }
+
+        clock.innerHTML = clockStr;
+        hexColor.textContent = hexColorStr;
+
+
+
+        document.body.style.backgroundColor = hexColorStr;
+      }
+
+      hexClock();
+    setInterval(hexClock, 1000);
+
+
+    </script>
+  </body>
+</html>
